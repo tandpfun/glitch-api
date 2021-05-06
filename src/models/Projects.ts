@@ -61,7 +61,7 @@ export default class Projects {
    *
    * @param {string} query - Query string
    */
-  async search(query: string) {
+  async search(query: string, page: number) {
     if (!query) {
       throw new Error('No query parameter was provided')
     }
@@ -76,6 +76,7 @@ export default class Projects {
     const index = client.initIndex('search_projects')
     const response = await index.search<Project>(query, {
       hitsPerPage: 10000,
+      page: page,
       facetFilters: 'notSafeForKids:false',
     })
 
