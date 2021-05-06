@@ -75,7 +75,7 @@ export default class Projects {
     const client = Algolia(creds.id, creds.searchKey)
     const index = client.initIndex('search_projects')
     const response = await index.search<Project>(query, {
-      hitsPerPage: 100,
+      hitsPerPage: 10000,
       facetFilters: 'notSafeForKids:false',
     })
 
